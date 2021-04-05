@@ -50,13 +50,13 @@ public class ReportingStructureServiceImplTest {
 
     @Test
     public void testReportingStructure() {
+        int expectedNumOfReports = 1;
         // Create the test employee
         Employee testEmployee = new Employee();
         testEmployee.setFirstName("John");
         testEmployee.setLastName("Doe");
         testEmployee.setDepartment("Engineering");
         testEmployee.setPosition("Developer");
-        testEmployee.setDirectReports(new ArrayList<>());
 
         // Get the full employee ID from this post
         Employee createdEmployee = restTemplate.postForEntity(employeeUrl, testEmployee, Employee.class).getBody();
@@ -75,17 +75,11 @@ public class ReportingStructureServiceImplTest {
         Employee createdBoss = restTemplate.postForEntity(employeeUrl, testBoss, Employee.class).getBody();
 
         // Get the amount of direct reports
-        assert createdBoss != null;
+
+        assertNotNull(createdBoss.getEmployeeId());
         ReportingStructure reportStruct = restTemplate.getForEntity(reportingStructureUrl, ReportingStructure.class, createdBoss.getEmployeeId()).getBody();
-        assertEquals(1, reportStruct.getNumberOfReports());
+        assertEquals(expectedNumOfReports, reportStruct.getNumberOfReports());
 
-    }
-
-    private static void assertEmployeeEquivalence(Employee expected, Employee actual) {
-        assertEquals(expected.getFirstName(), actual.getFirstName());
-        assertEquals(expected.getLastName(), actual.getLastName());
-        assertEquals(expected.getDepartment(), actual.getDepartment());
-        assertEquals(expected.getPosition(), actual.getPosition());
     }
 }
 

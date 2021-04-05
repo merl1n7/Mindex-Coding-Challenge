@@ -31,8 +31,10 @@ public class ReportingStructureServiceImpl implements ReportingStructureService{
         while (remainingEmployees.size() > 0){
             Employee currentEmployee =remainingEmployees.get(0);
             List <Employee> directReports = currentEmployee.getDirectReports();
-            numOfReports += directReports.size();
-            remainingEmployees.addAll(directReports);
+            if(directReports != null){
+                numOfReports += directReports.size();
+                remainingEmployees.addAll(directReports);
+            }
             remainingEmployees.remove(0);
         }
         reportingStructure.setEmployee(boss);

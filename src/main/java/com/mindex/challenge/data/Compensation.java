@@ -1,15 +1,15 @@
 package com.mindex.challenge.data;
 
-import com.mindex.challenge.data.Employee;
+import java.time.LocalDate;
 
 public class Compensation {
     private Employee employee;
     private int salary;
-    //private idk data type, effectiveDate;
+    private LocalDate effectiveDate;
 
 
     public Employee getEmployee() {
-        return employee;
+        return this.employee;
     }
 
     public void setEmployee(Employee employee) {
@@ -17,10 +17,18 @@ public class Compensation {
     }
 
     public int getSalary() {
-        return salary;
+        return this.salary;
     }
 
     public void setSalary(int salary) {
         this.salary = salary;
+    }
+
+    public LocalDate getEffectiveDate(){
+        return this.effectiveDate;
+    }
+
+    public void setEffectiveDate(LocalDate effectiveDate){
+        this.effectiveDate = effectiveDate;
     }
 }

@@ -1,4 +1,6 @@
 package com.mindex.challenge.data;
+import com.mindex.challenge.data.Compensation;
+import com.mindex.challenge.data.Employee;
 
 import java.time.LocalDate;
 
